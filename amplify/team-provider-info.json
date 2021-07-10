@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-nanasi6-dev-204305-authRole",
+      "UnauthRoleArn": "arn:aws:iam::269973193262:role/amplify-nanasi6-dev-204305-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::269973193262:role/amplify-nanasi6-dev-204305-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-nanasi6-dev-204305-deployment",
+      "UnauthRoleName": "amplify-nanasi6-dev-204305-unauthRole",
+      "StackName": "amplify-nanasi6-dev-204305",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:269973193262:stack/amplify-nanasi6-dev-204305/fe7bffc0-e173-11eb-bb3b-0ec2f5ab95af",
+      "AmplifyAppId": "d3rxxsw0p83qxs"
+    }
+  }
+}
