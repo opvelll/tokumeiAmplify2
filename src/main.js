@@ -1,6 +1,7 @@
-import { createApp } from "vue";
-import App from "./App.vue";
-import router from "./router";
+import { createApp } from 'vue'
+import vuetify from './plugins/vuetify'
+import App from './App.vue'
+import router from './router'
 
 import Amplify from "aws-amplify";
 import aws_exports from "./aws-exports";
@@ -14,6 +15,8 @@ applyPolyfills().then(() => {
   defineCustomElements(window);
 });
 
-createApp(App)
-  .use(router)
-  .mount("#app");
+const app = createApp(App)
+app.use(router)
+app.use(vuetify)
+
+app.mount('#app')
