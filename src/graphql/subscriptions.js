@@ -1,34 +1,108 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateTodo = /* GraphQL */ `
-  subscription OnCreateTodo {
-    onCreateTodo {
+export const onCommentByThreadId = /* GraphQL */ `
+  subscription OnCommentByThreadId($threadId: ID!) {
+    onCommentByThreadId(threadId: $threadId) {
       id
-      name
-      description
+      title
+      threadId
       createdAt
       updatedAt
     }
   }
 `;
-export const onUpdateTodo = /* GraphQL */ `
-  subscription OnUpdateTodo {
-    onUpdateTodo {
+export const onCreateThread = /* GraphQL */ `
+  subscription OnCreateThread {
+    onCreateThread {
       id
-      name
-      description
+      type
+      title
+      comments {
+        items {
+          id
+          title
+          threadId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
   }
 `;
-export const onDeleteTodo = /* GraphQL */ `
-  subscription OnDeleteTodo {
-    onDeleteTodo {
+export const onUpdateThread = /* GraphQL */ `
+  subscription OnUpdateThread {
+    onUpdateThread {
       id
-      name
-      description
+      type
+      title
+      comments {
+        items {
+          id
+          title
+          threadId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteThread = /* GraphQL */ `
+  subscription OnDeleteThread {
+    onDeleteThread {
+      id
+      type
+      title
+      comments {
+        items {
+          id
+          title
+          threadId
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateComment = /* GraphQL */ `
+  subscription OnCreateComment {
+    onCreateComment {
+      id
+      title
+      threadId
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateComment = /* GraphQL */ `
+  subscription OnUpdateComment {
+    onUpdateComment {
+      id
+      title
+      threadId
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteComment = /* GraphQL */ `
+  subscription OnDeleteComment {
+    onDeleteComment {
+      id
+      title
+      threadId
       createdAt
       updatedAt
     }
