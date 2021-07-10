@@ -78,6 +78,7 @@ export default defineComponent({
 
     const unSubscription = () => {
       createCommentSubscription.value.unsubscribe();
+      console.log("unsubscribe");
     };
 
     //コメントフォームをクリック時
