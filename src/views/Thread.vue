@@ -1,7 +1,13 @@
 <template>
+  <v-app-bar density="compact" flat
+    ><router-link to="/"
+      ><v-app-bar-title>タイトルに戻る</v-app-bar-title></router-link
+    >
+    <v-app-bar-title>{{ thread.title }}</v-app-bar-title></v-app-bar
+  >
+
+  <v-divider></v-divider>
   <div class="thread">
-    <router-link to="/">タイトルに戻る</router-link>
-    <h2>{{ thread.title }}</h2>
     <div v-for="comment in thread.comments.items" :key="comment.id">
       <div>{{ comment.title }}</div>
     </div>

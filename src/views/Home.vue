@@ -1,48 +1,43 @@
 <template>
-  <div class="threadList">
-    <table>
-      <thead>
-        <tr>
-          <th>スレッド名</th>
-          <th>作成日</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="thread in threadList" :key="thread.id">
-          <td>
-            <div>
-              <router-link :to="thread.id">
-                {{ thread.title }}
-              </router-link>
-            </div>
-          </td>
-          <td>
-            {{ thread.createdAt }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div v-for="thread in threadList" :key="thread.id"></div>
-  </div>
-  <div class="createThreadForm">
-    <form @submit.prevent="onSubmitForm">
-      <h3>スレッドを作成する</h3>
-      <div>
+  <v-app-bar density="compact" flat
+    ><v-app-bar-title>Amplify製・匿名掲示板</v-app-bar-title></v-app-bar
+  >
+  <v-divider></v-divider>
+  <v-container>
+    <div class="threadList">
+      <v-list>
+        <v-subheader>スレッド一覧</v-subheader>
+        <v-list-item
+          v-for="thread in threadList"
+          :key="thread.id"
+          :to="thread.id"
+        >
+          <v-list-item-title>{{ thread.title }}</v-list-item-title>
+          <v-list-item-subtitle>{{ thread.createdAt }}</v-list-item-subtitle>
+        </v-list-item>
+      </v-list>
+    </div>
+
+    <div class="createThreadForm">
+      <form @submit.prevent="onSubmitForm">
+        <v-subheader>スレッドを作成する</v-subheader>
         <div>
-          <label for="title">スレッド名</label>
+          <div>
+            <label for="title">スレッド名</label>
+          </div>
+          <input id="title" v-model="createThreadForm.title" />
         </div>
-        <input id="title" v-model="createThreadForm.title" />
-      </div>
-      <div>
         <div>
-          <label for="comment">最初のコメント</label>
+          <div>
+            <label for="comment">最初のコメント</label>
+          </div>
+          <textarea id="comment" v-model="createThreadForm.firstComment">
+          </textarea>
         </div>
-        <textarea id="comment" v-model="createThreadForm.firstComment">
-        </textarea>
-      </div>
-      <input class="button" type="submit" value="送信" />
-    </form>
-  </div>
+        <v-btn>送信</v-btn>
+      </form>
+    </div>
+  </v-container>
 </template>
 
 <script>
