@@ -4,6 +4,9 @@ import router from "./router";
 
 import Amplify from "aws-amplify";
 import aws_exports from "./aws-exports";
+
+import { ElButton, ElSelect } from "element-plus";
+
 import {
   applyPolyfills,
   defineCustomElements,
@@ -14,6 +17,8 @@ applyPolyfills().then(() => {
   defineCustomElements(window);
 });
 
-createApp(App)
-  .use(router)
-  .mount("#app");
+const app = createApp(App);
+app.component(ElButton.name, ElButton);
+app.component(ElSelect.name, ElSelect);
+
+app.use(router).mount("#app");
