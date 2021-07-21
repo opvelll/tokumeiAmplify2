@@ -1,51 +1,38 @@
 <template>
-  <div class="threadList">
-    <table>
-      <thead>
-        <tr>
-          <th>スレッド名</th>
-          <th>作成日</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="thread in threadList" :key="thread.id">
-          <td>
-            <div>
-              <router-link :to="thread.id">
-                {{ thread.title }}
-              </router-link>
-            </div>
-          </td>
-          <td>
-            {{ thread.createdAt }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div v-for="thread in threadList" :key="thread.id"></div>
-  </div>
-  <div class="createThreadForm">
-    <form @submit.prevent="onSubmitForm">
-      <h3>スレッドを作成する</h3>
-      <div>
+  <el-header>
+    <h1>匿名掲示板(AWS Amplify製)</h1>
+  </el-header>
+  <el-main>
+    <div class="threadList">
+      <el-table :data="threadList" @cell-click="onClickCell">
+        <el-table-column prop="title" label="スレッド名"> </el-table-column>
+        <el-table-column prop="createdAt" label="作成日"> </el-table-column>
+      </el-table>
+    </div>
+    <div class="createThreadForm">
+      <form @submit.prevent="onSubmitForm">
+        <h3>スレッドを作成する</h3>
         <div>
-          <label for="title">スレッド名</label>
+          <div>
+            <label for="title">スレッド名</label>
+          </div>
+          <input id="title" v-model="createThreadForm.title" />
         </div>
-        <input id="title" v-model="createThreadForm.title" />
-      </div>
-      <div>
         <div>
-          <label for="comment">最初のコメント</label>
+          <div>
+            <label for="comment">最初のコメント</label>
+          </div>
+          <textarea id="comment" v-model="createThreadForm.firstComment">
+          </textarea>
         </div>
-        <textarea id="comment" v-model="createThreadForm.firstComment">
-        </textarea>
-      </div>
-      <input class="button" type="submit" value="送信" />
-    </form>
-  </div>
+        <input class="button" type="submit" value="送信" />
+      </form>
+    </div>
+  </el-main>
 </template>
 
 <script>
+import { useRouter } from "vue-router";
 import { API } from "@aws-amplify/api";
 import { byCreatedAt } from "../graphql/queries.js";
 import { createComment, createThread } from "../graphql/mutations.js";
@@ -55,6 +42,7 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   setup() {
+    const router = useRouter();
     // スレッドの一覧
     const threadList = ref([]);
     // スレッド作成フォーム
@@ -118,9 +106,20 @@ export default defineComponent({
       createThreadForm.firstComment = "";
     };
 
+    //cellをクリック
+    const onClickCell = (row) => {
+      router.push(row.id);
+    };
+
     onMounted(getThreadList);
 
-    return { threadList, createThreadForm, errorMessage, onSubmitForm };
+    return {
+      onClickCell,
+      threadList,
+      createThreadForm,
+      errorMessage,
+      onSubmitForm,
+    };
   },
 });
 </script>

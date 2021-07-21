@@ -1,23 +1,30 @@
 <template>
-  <div class="thread">
-    <router-link to="/">タイトルに戻る</router-link>
-    <h2>{{ thread.title }}</h2>
-    <div v-for="comment in thread.comments.items" :key="comment.id">
-      <div>{{ comment.title }}</div>
+  <el-header>
+    <el-space>
+      <el-button>
+        <router-link to="/">戻る</router-link>
+      </el-button>
+      <h2>{{ thread.title }}</h2>
+    </el-space>
+  </el-header>
+  <el-main>
+    <div class="thread">
+      <el-table :data="thread.comments.items">
+        <el-table-column prop="title" label="コメント"> </el-table-column>
+        <el-table-column prop="createdAt" label="投稿日"> </el-table-column>
+      </el-table>
     </div>
-  </div>
-  <div class="commentForm">
-    <form @submit.prevent="onCommentForm">
-      <h3>コメントする</h3>
-      <div>
-        <label for="title">新しいコメント</label>
-      </div>
-      <div>
-        <input id="title" v-model="commentForm.content" />
-      </div>
-      <div><input class="button" type="submit" value="送信" /></div>
-    </form>
-  </div>
+    <div class="commentForm">
+      <el-form inline :model="commentForm">
+        <el-form-item>
+          <el-input v-model="commentForm.content"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="onCommentForm">投稿</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
+  </el-main>
 </template>
 
 <script>

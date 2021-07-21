@@ -5,7 +5,19 @@ import router from "./router";
 import Amplify from "aws-amplify";
 import aws_exports from "./aws-exports";
 
-import { ElButton, ElSelect } from "element-plus";
+import {
+  ElButton,
+  ElSelect,
+  ElTable,
+  ElTableColumn,
+  ElContainer,
+  ElHeader,
+  ElMain,
+  ElSpace,
+  ElForm,
+  ElFormItem,
+  ElInput,
+} from "element-plus";
 
 import {
   applyPolyfills,
@@ -18,7 +30,22 @@ applyPolyfills().then(() => {
 });
 
 const app = createApp(App);
-app.component(ElButton.name, ElButton);
-app.component(ElSelect.name, ElSelect);
+
+const components = [
+  ElButton,
+  ElSelect,
+  ElTable,
+  ElTableColumn,
+  ElContainer,
+  ElHeader,
+  ElMain,
+  ElSpace,
+  ElForm,
+  ElFormItem,
+  ElInput,
+];
+components.forEach((component) => {
+  app.component(component.name, component);
+});
 
 app.use(router).mount("#app");
