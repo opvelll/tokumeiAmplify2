@@ -9,20 +9,27 @@
   </el-header>
   <el-main>
     <div class="thread">
-      <el-table :data="thread.comments.items">
+      <el-table :data="thread.comments.items" style="margin-bottom: 24px">
         <el-table-column prop="title" label="コメント"> </el-table-column>
         <el-table-column prop="createdAt" label="投稿日"> </el-table-column>
       </el-table>
     </div>
     <div class="commentForm">
-      <el-form inline :model="commentForm">
-        <el-form-item>
-          <el-input v-model="commentForm.content"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="onCommentForm">投稿</el-button>
-        </el-form-item>
-      </el-form>
+      <el-card class="box-card" shadow="never">
+        <template #header>
+          <div class="card-header">
+            <span>コメントを投稿する</span>
+          </div>
+        </template>
+        <el-form label-position="top" :model="commentForm">
+          <el-form-item>
+            <el-input v-model="commentForm.content"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="onCommentForm">投稿</el-button>
+          </el-form-item>
+        </el-form>
+      </el-card>
     </div>
   </el-main>
 </template>

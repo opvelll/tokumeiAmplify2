@@ -3,31 +3,33 @@
     <h1>匿名掲示板(AWS Amplify製)</h1>
   </el-header>
   <el-main>
-    <div class="threadList">
-      <el-table :data="threadList" @cell-click="onClickCell">
-        <el-table-column prop="title" label="スレッド名"> </el-table-column>
-        <el-table-column prop="createdAt" label="作成日"> </el-table-column>
-      </el-table>
-    </div>
-    <div class="createThreadForm">
-      <form @submit.prevent="onSubmitForm">
-        <h3>スレッドを作成する</h3>
-        <div>
-          <div>
-            <label for="title">スレッド名</label>
-          </div>
-          <input id="title" v-model="createThreadForm.title" />
+    <el-table
+      style="margin-bottom: 24px"
+      :data="threadList"
+      @cell-click="onClickCell"
+    >
+      <el-table-column prop="title" label="スレッド名"> </el-table-column>
+      <el-table-column prop="createdAt" label="作成日"> </el-table-column>
+    </el-table>
+
+    <el-card class="box-card" shadow="never">
+      <template #header>
+        <div class="card-header">
+          <span>スレッドを作成する</span>
         </div>
-        <div>
-          <div>
-            <label for="comment">最初のコメント</label>
-          </div>
-          <textarea id="comment" v-model="createThreadForm.firstComment">
-          </textarea>
-        </div>
-        <input class="button" type="submit" value="送信" />
-      </form>
-    </div>
+      </template>
+      <el-form label-position="top" :model="createThreadForm">
+        <el-form-item label="スレッド名">
+          <el-input v-model="createThreadForm.title"></el-input>
+        </el-form-item>
+        <el-form-item label="最初のコメント">
+          <el-input v-model="createThreadForm.firstComment"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="onSubmitForm">作成</el-button>
+        </el-form-item>
+      </el-form>
+    </el-card>
   </el-main>
 </template>
 

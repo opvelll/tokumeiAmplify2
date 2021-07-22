@@ -17,6 +17,7 @@ import {
   ElForm,
   ElFormItem,
   ElInput,
+  ElCard,
 } from "element-plus";
 
 import {
@@ -43,6 +44,7 @@ const components = [
   ElForm,
   ElFormItem,
   ElInput,
+  ElCard,
 ];
 components.forEach((component) => {
   app.component(component.name, component);
