@@ -1,7 +1,5 @@
 <template>
-  <el-header>
-    <h1>匿名掲示板(AWS Amplify製)</h1>
-  </el-header>
+  <el-header height="30px"><span>匿名掲示板(AWS Amplify製)</span> </el-header>
   <el-main>
     <el-table
       style="margin-bottom: 24px"

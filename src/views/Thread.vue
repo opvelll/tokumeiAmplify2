@@ -1,13 +1,9 @@
 <template>
-  <el-header>
-    <el-space>
-      <el-button>
-        <router-link to="/">戻る</router-link>
-      </el-button>
-      <h2>{{ thread.title }}</h2>
-    </el-space>
+  <el-header height="30px">
+    <el-button icon="el-icon-back" @click="backMain">戻る</el-button>
   </el-header>
   <el-main>
+    <h1>{{ thread.title }}</h1>
     <div class="thread">
       <el-table :data="thread.comments.items" style="margin-bottom: 24px">
         <el-table-column prop="title" label="コメント"> </el-table-column>
@@ -35,7 +31,7 @@
 </template>
 
 <script>
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { defineComponent, onMounted, onUnmounted, reactive, ref } from "vue";
 import { API } from "@aws-amplify/api";
 import { getThread } from "../graphql/queries";
@@ -45,6 +41,7 @@ import { onCommentByThreadId } from "../graphql/subscriptions";
 export default defineComponent({
   setup() {
     const route = useRoute();
+    const router = useRouter();
 
     const isNotFoundError = ref(false);
     const threadId = ref("");
@@ -133,10 +130,14 @@ export default defineComponent({
       commentForm.content = "";
     };
 
+    const backMain = () => {
+      router.push("/");
+    };
+
     onMounted(setUpPage);
     onUnmounted(unSubscription);
 
-    return { onCommentForm, isNotFoundError, thread, commentForm };
+    return { onCommentForm, isNotFoundError, thread, commentForm, backMain };
   },
 });
 </script>
